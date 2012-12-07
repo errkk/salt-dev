@@ -10,4 +10,4 @@ ensure_git_installed:
         - mode: 755
         - source: salt://dev_git/files/.gitconfig
         - require:
-        - pkg.installed: ensure_git_installed
+            - pkg.installed: ensure_git_installed
