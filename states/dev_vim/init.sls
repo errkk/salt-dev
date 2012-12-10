@@ -13,12 +13,20 @@ ensure_vim_installed:
         - require:
             - pkg.installed: ensure_vim_installed
 
+/home/vagrant/.vim/:
+    file.managed:
+        - user: vagrant
+        - group: vagrant
+        - mode: 755
+        - require:
+            - pkg.installed: git
 
-clone_oh_my_zsh:
+clone_vundle:
   cmd.run:
-    - name: "git clone git://github.com/gmarik/vundle.git /home/vagrant/bundle/vundle/"
+    - name: "git clone git://github.com/gmarik/vundle.git /home/vagrant/.vim/bundle/vundle/"
     - user: vagrant
-    - cwd: /home/vagrant
+    - cwd: /home/vagrant/.vim
     - require:
       - pkg.installed: vim
-    - unless: 'test -d /home/vagrant/bundle/vundle/'
+      - pkg.installed: git
+    - unless: 'test -d /home/vagrant/.vim/bundle/vundle/'

@@ -72,5 +72,4 @@ set_zsh_default_shell:
       - pkg.installed: zsh
       - pkg.installed: git
       - pkg.installed: git-core
-      - file: chris_zsh_theme
     - unless: "grep -E '^vagrant.+:/usr/bin/zsh$' /etc/passwd"
