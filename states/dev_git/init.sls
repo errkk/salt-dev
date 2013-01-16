@@ -8,6 +8,11 @@ ensure_rake_installed:
         - installed
         - name: rake
 
+ensure_tig_installed:
+    pkg:
+        - installed
+        - name: tig
+
 /home/vagrant/.gitconfig:
     file.managed:
         - user: vagrant
@@ -29,3 +34,4 @@ hub:
             - git: hub
         - require:
             - pkg.installed: ensure_rake_installed
+
