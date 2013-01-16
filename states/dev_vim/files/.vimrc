@@ -3,7 +3,7 @@ set nocompatible               " be iMproved
 filetype on
 filetype plugin on
 set rtp+=~/.vim/bundle/vundle/
-
+set mouse=a
 call vundle#rc()
 
 

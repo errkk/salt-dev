@@ -18,41 +18,7 @@ clone_oh_my_zsh:
       - pkg.installed: git-core
     - unless: 'test -d /home/vagrant/.oh-my-zsh'
 
-# Tmuxinator Plugin Directory for Oh-My-Zsh
-/home/vagrant/.oh-my-zsh/plugins/tmuxinator:
-  file.directory:
-    - user: vagrant
-    - group: vagrant
-    - mode: 755
-    - require:
-      - cmd.run: clone_oh_my_zsh
-
-# Tmuxinator Autocomplete
-/home/vagrant/.oh-my-zsh/plugins/tmuxinator/_tmuxinator:
-  file.managed:
-    - user: vagrant
-    - group: vagrant
-    - mode: 755
-    - source: salt://dev_zsh/files/_tmuxinator
-    - require:
-      - pkg.installed: tmux
-      - cmd.run: clone_oh_my_zsh
-      - file.directory: /home/vagrant/.oh-my-zsh/plugins/tmuxinator
-
-# Tmuxinator Autocomplete Plugin
-/home/vagrant/.oh-my-zsh/plugins/tmuxinator/tmuxinator.plugin.zsh:
-  file.managed:
-    - user: vagrant
-    - group: vagrant
-    - mode: 755
-    - source: salt://dev_zsh/files/tmuxinator.plugin.zsh
-    - require:
-      - pkg.installed: tmux
-      - cmd.run: clone_oh_my_zsh
-      - file.directory: /home/vagrant/.oh-my-zsh/plugins/tmuxinator
-      - file: /home/vagrant/.oh-my-zsh/plugins/tmuxinator/_tmuxinator
-
-# Config
+# Config, Parse .zshrc
 /home/vagrant/.zshrc:
   file.managed:
     - user: vagrant
@@ -60,6 +26,17 @@ clone_oh_my_zsh:
     - mode: 755
     - source: salt://dev_zsh/files/.zshrc
     - template: jinja
+    - require:
+      - pkg.installed: zsh
+      - cmd.run: clone_oh_my_zsh
+
+# Add plugin for git flow completion
+/home/vagrant/.oh-my-zsh/plugins/git-flow-completion/git-flow-completion.plugin.zsh:
+  file.managed:
+    - user: vagrant
+    - group: vagrant
+    - mode: 755
+    - source: salt://dev_zsh/files/git-flow-completion.plugin.zsh
     - require:
       - pkg.installed: zsh
       - cmd.run: clone_oh_my_zsh
