@@ -1,7 +1,6 @@
 set encoding=utf-8
 set nocompatible               " be iMproved
-filetype on
-filetype plugin on
+filetype off
 set rtp+=~/.vim/bundle/vundle/
 set mouse=a
 call vundle#rc()
@@ -36,6 +35,7 @@ Bundle 'corntrace/bufexplorer'
 " Syntaxes and such.
 Bundle 'leshill/vim-json'
 Bundle 'rodjek/vim-puppet'
+Bundle 'skammer/vim-css-color'
 Bundle 'groenewege/vim-less'
 
 " Python bundles
@@ -52,13 +52,17 @@ Bundle 'tpope/vim-endwise'
 " Fun, but not useful
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'mgutz/vim-colors'
-Bundle 'skammer/vim-css-color'
 Bundle 'ehamberg/vim-cute-python'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'Gundo'
 Bundle 'tomtom/tlib_vim'
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'ctrlp.vim'
+
+
+filetype plugin indent on
+let NERDTreeIgnore = ['\.pyc$']
+let g:cssColorVimDoNotMessMyUpdatetime = 0
 
 " Configurations
 """"""""""""""""
@@ -86,9 +90,7 @@ au TabLeave * silent! :wa
 
 " Resize splits when the window is resized
 au VimResized * exe "normal! \<c-w>="
-filetype plugin indent on
 
-autocmd FileType html, xhtml set ft=html.html " For SnipMate
 au BufRead,BufNewFile *.html set filetype=html.html
 
 " Colours
