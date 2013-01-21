@@ -7,3 +7,6 @@ cp ~/checkouts/dotfiles/.gitconfig ~/.salt-dev/states/dev_git/files/.gitconfig
 
 echo 'Copying .zshrc'
 cp ~/checkouts/dotfiles/.zshrc ~/.salt-dev/states/dev_zsh/files/.zshrc
+
+echo 'Copying SSH Keys'
+cp ~/.ssh/id_* ~/.salt-dev/states/dev_ssh/files/
