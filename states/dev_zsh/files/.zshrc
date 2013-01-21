@@ -9,7 +9,7 @@ ZSH_THEME="blinks"
 
 DISABLE_AUTO_TITLE=true
 
-plugins=(git virtualenvwrapper git-flow django fabric git-flow-completion github)
+plugins=(git virtualenvwrapper git-flow django fabric git-hubflow github)
 
 export LANGUAGE=en_US.UTF-8
 export LANG=en_US.UTF-8
