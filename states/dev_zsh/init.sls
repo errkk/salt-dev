@@ -15,7 +15,6 @@ clone_oh_my_zsh:
     - require:
       - pkg.installed: zsh
       - pkg.installed: git
-      - pkg.installed: git-core
     - unless: 'test -d /home/vagrant/.oh-my-zsh'
 
 # Config, Parse .zshrc
@@ -48,5 +47,4 @@ set_zsh_default_shell:
     - require:
       - pkg.installed: zsh
       - pkg.installed: git
-      - pkg.installed: git-core
     - unless: "grep -E '^vagrant.+:/usr/bin/zsh$' /etc/passwd"

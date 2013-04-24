@@ -14,7 +14,7 @@ ensure_vim_installed:
             - pkg.installed: ensure_vim_installed
 
 /home/vagrant/.vim/:
-    file.managed:
+    file.directory:
         - user: vagrant
         - group: vagrant
         - mode: 755
