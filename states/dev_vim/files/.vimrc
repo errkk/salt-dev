@@ -20,6 +20,7 @@ let NERDTreeIgnore = ['\.pyc$']
 
 " VCS
 Bundle 'tpope/vim-fugitive'
+Bundle 'airblade/vim-gitgutter'
 
 " System
 Bundle 'scrooloose/nerdtree'
@@ -31,6 +32,7 @@ Bundle 'ervandew/supertab'
 Bundle 'Raimondi/delimitMate'
 Bundle 'sophacles/vim-bundle-sparkup'
 Bundle 'corntrace/bufexplorer'
+Bundle 'goldfeld/vim-seek'
 
 " Syntaxes and such.
 Bundle 'leshill/vim-json'
@@ -151,6 +153,15 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 nnoremap / /\v
 vnoremap / /\v
 
+" Preserve indentation while pasting text from the OS X clipboard
+noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
+
+" :W should save as well
+command W w
+
+" Copy visual selection
+vmap <C-c> "*y
+
 autocmd FileType python map <buffer> <F3> :call Flake8()<CR>
 let g:flake8_ignore="E501,W293"
 
@@ -196,7 +207,7 @@ au BufNewFile,BufReadPost *.coffee setlocal shiftwidth=2 expandtab
 au BufNewFile,BufReadPost *.js setlocal shiftwidth=4 tabstop=4 expandtab
 
 " Get jinja filetype selection working correctly for *.jinja.html files.
-au BufNewFile,BufReadPost *.jinja.html setlocal filetype=htmljinja
+au BufNewFile,BufReadPost *.html.jinja setlocal filetype=htmljinja
 
 " Make sure we hilight extra whitespace in the most annoying way possible.
 "highlight ExtraWhitespace ctermbg=red guibg=red
@@ -215,7 +226,9 @@ autocmd BufWritePre *.less :%s/\s\+$//e
 
 " Genral
 noremap <silent> <F3> :QFix<CR>
-
+:nmap <C-n> :bnext<CR>
+:nmap <C-p> :bprev<CR>
+:nmap ; :CtrlPBuffer<CR>
 
 " Change leader
 let mapleader = ","
@@ -266,7 +279,9 @@ map <leader>gb :Gblame<CR>
 map <leader>gd :Gdiff<CR>
 map <leader>ge :Gedit<CR>
 
-let g:Powerline_symbols = 'fancy'
+if has('gui_running')
+    let g:Powerline_symbols = 'fancy'
+endif
 
 autocmd VimEnter * NERDTree
 let NERDTreeShowBookmarks=1
