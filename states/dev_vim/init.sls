@@ -40,8 +40,8 @@ clone_vundle:
     - require:
       - pkg.installed: vim
       - pkg.installed: git
-      - file.directory: /home/vagrant/.vim/bundle/vundle/
-    - unless: 'test -d /home/vagrant/.vim/bundle/vundle/'
+      - file.directory: /home/vagrant/.vim/bundle/vundle
+    - unless: 'test -d /home/vagrant/.vim/bundle/vundle/.git'
 
 
 /home/vagrant/.vimrc:
