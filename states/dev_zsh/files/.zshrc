@@ -29,3 +29,4 @@ export PATH=/usr/local/heroku/bin:/usr/local/Cellar/ruby/1.9.3-p0/bin:/opt/local
 alias rs="django-admin.py runserver 0.0.0.0:9000"
 alias gs='git status'
 pr() {hub pull-request -b pokelondon:develop -h pokelondon:feature/issue-"$1" -i "$1" }
+workon {{ pillar['project_name'] }}
