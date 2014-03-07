@@ -29,6 +29,17 @@ clone_oh_my_zsh:
       - pkg.installed: zsh
       - cmd.run: clone_oh_my_zsh
 
+/home/vagrant/.oh-my-zsh/themes/eric.zsh-theme:
+  file.managed:
+    - user: vagrant
+    - group: vagrant
+    - mode: 755
+    - source: salt://dev_zsh/files/eric.zsh-theme
+    - template: jinja
+    - require:
+      - pkg.installed: zsh
+      - cmd.run: clone_oh_my_zsh
+
 # Add plugin for git flow completion
 /home/vagrant/.oh-my-zsh/plugins/git-flow-completion/git-flow-completion.plugin.zsh:
   file.managed:
