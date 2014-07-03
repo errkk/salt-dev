@@ -13,8 +13,8 @@ clone_oh_my_zsh:
     - user: vagrant
     - cwd: /home/vagrant
     - require:
-      - pkg.installed: zsh
-      - pkg.installed: git
+      - pkg: zsh
+      - pkg: git
     - unless: 'test -d /home/vagrant/.oh-my-zsh'
 
 # Config, Parse .zshrc
@@ -26,8 +26,8 @@ clone_oh_my_zsh:
     - source: salt://dev_zsh/files/.zshrc
     - template: jinja
     - require:
-      - pkg.installed: zsh
-      - cmd.run: clone_oh_my_zsh
+      - pkg: zsh
+      - cmd: clone_oh_my_zsh
 
 /home/vagrant/.oh-my-zsh/themes/eric.zsh-theme:
   file.managed:
@@ -37,8 +37,8 @@ clone_oh_my_zsh:
     - source: salt://dev_zsh/files/eric.zsh-theme
     - template: jinja
     - require:
-      - pkg.installed: zsh
-      - cmd.run: clone_oh_my_zsh
+      - pkg: zsh
+      - cmd: clone_oh_my_zsh
 
 # Add plugin for git flow completion
 /home/vagrant/.oh-my-zsh/plugins/git-flow-completion/git-flow-completion.plugin.zsh:
@@ -47,15 +47,16 @@ clone_oh_my_zsh:
     - group: vagrant
     - mode: 755
     - source: salt://dev_zsh/files/git-flow-completion.plugin.zsh
+    - makedirs: True
     - require:
-      - pkg.installed: zsh
-      - cmd.run: clone_oh_my_zsh
+      - pkg: zsh
+      - cmd: clone_oh_my_zsh
 
 # Ensure ZSH is default shell
 set_zsh_default_shell:
   cmd.run:
     - name: "chsh -s /usr/bin/zsh vagrant"
     - require:
-      - pkg.installed: zsh
-      - pkg.installed: git
+      - pkg: zsh
+      - pkg: git
     - unless: "grep -E '^vagrant.+:/usr/bin/zsh$' /etc/passwd"

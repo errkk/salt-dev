@@ -20,7 +20,7 @@ ensure_tig_installed:
         - mode: 755
         - source: salt://dev_git/files/.gitconfig
         - require:
-            - pkg.installed: ensure_git_installed
+            - pkg: ensure_git_installed
 
 /usr/share/git-core/templates/hooks/post-checkout:
     file.managed:
@@ -29,7 +29,7 @@ ensure_tig_installed:
         - mode: 755
         - source: salt://dev_git/files/post-checkout
         - require:
-            - pkg.installed: ensure_git_installed
+            - pkg: ensure_git_installed
 
 hub:
     git.latest:
@@ -42,5 +42,5 @@ hub:
         - watch:
             - git: hub
         - require:
-            - pkg.installed: ensure_rake_installed
+            - pkg: ensure_rake_installed
 

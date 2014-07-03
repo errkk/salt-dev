@@ -10,8 +10,8 @@ ensure_vim_installed:
     - group: vagrant
     - mode: 755
     - require:
-      - pkg.installed: git
-      - pkg.installed: ensure_vim_installed
+      - pkg: git
+      - pkg: ensure_vim_installed
 
 
 /home/vagrant/.vim/bundle:
@@ -20,7 +20,7 @@ ensure_vim_installed:
     - group: vagrant
     - mode: 755
     - require:
-      - file.directory: /home/vagrant/.vim
+      - file: /home/vagrant/.vim
 
 
 /home/vagrant/.vim/bundle/vundle:
@@ -29,7 +29,7 @@ ensure_vim_installed:
     - group: vagrant
     - mode: 755
     - require:
-      - file.directory: /home/vagrant/.vim/bundle
+      - file: /home/vagrant/.vim/bundle
 
 
 clone_vundle:
@@ -38,9 +38,9 @@ clone_vundle:
     - user: vagrant
     - cwd: /home/vagrant/
     - require:
-      - pkg.installed: vim
-      - pkg.installed: git
-      - file.directory: /home/vagrant/.vim/bundle/vundle
+      - pkg: vim
+      - pkg: git
+      - file: /home/vagrant/.vim/bundle/vundle
     - unless: 'test -d /home/vagrant/.vim/bundle/vundle/.git'
 
 
@@ -58,7 +58,7 @@ clone_vundle:
     - group: vagrant
     - mode: 755
     - require:
-      - file.directory: /home/vagrant/.vim
+      - file: /home/vagrant/.vim
 
 
 /home/vagrant/.vim/colors/solarized.vim:
@@ -68,4 +68,4 @@ clone_vundle:
     - mode: 755
     - source: salt://dev_vim/files/solarized.vim
     - require:
-      - file.directory: /home/vagrant/.vim/colors
+      - file: /home/vagrant/.vim/colors

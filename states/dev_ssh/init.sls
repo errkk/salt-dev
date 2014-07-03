@@ -10,7 +10,7 @@ ensure_ssh_installed:
         - mode: 600
         - source: salt://dev_ssh/files/id_rsa
         - require:
-            - pkg.installed: ensure_ssh_installed
+            - pkg: ensure_ssh_installed
 
 /home/vagrant/.ssh/id_rsa.pub:
     file.managed:
@@ -19,4 +19,4 @@ ensure_ssh_installed:
         - mode: 600
         - source: salt://dev_ssh/files/id_rsa.pub
         - require:
-            - pkg.installed: ensure_ssh_installed
+            - pkg: ensure_ssh_installed
